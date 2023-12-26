@@ -1,0 +1,48 @@
+/* CryptocurrencyCard.module.css */
+.card{
+    opacity: 0;
+}
+.card.visible{
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+.cardContainer {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    width: 250px;
+    height: 250px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.cardContainer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: CairoPlay, sans-serif;
+}
+
+.price {
+    font-size: 2em;
+    font-weight: bold;
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,22 @@
+.Header{
+    font-family: BungeeSpice, serif !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    padding: 40px 0 20px 0;
+}
+
+#animatedText span {
+    animation: colorChange 3s infinite;
+}
+
+/* Keyframes for Color Change */
+@keyframes colorChange {
+    0% { color: red; }
+    25% { color: blue; }
+    50% { color: green; }
+    75% { color: yellow; }
+    100% { color: red; }
+}
