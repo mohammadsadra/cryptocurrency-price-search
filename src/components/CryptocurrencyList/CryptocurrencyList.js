@@ -1,53 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import './CryptocurrencyList.css';
 import CryptocurrencyCard from "../CryptocurrencyCard/CryptocurrencyCard";
+import SearchBar from "../SearchBar/SearchBar";
 
 const CryptocurrencyList = () => {
     const [cryptocurrencyList, setCryptocurrencyList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loaded, setLoaded] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchCryptocurrencyList = async () => {
             setLoading(true);
             setLoaded(false);
-
             try {
                 const response = await fetch('https://api.kraken.com/0/public/Ticker');
                 const data = await response.json();
-
-                console.log(typeof data['result']); // Debugging
                 setCryptocurrencyList(Object.entries(data['result']));
-                console.log(typeof cryptocurrencyList); // Debugging
+                console.log(cryptocurrencyList);
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
-
             setLoading(false);
             setLoaded(true);
-            console.log(cryptocurrencyList); // Debugging
         };
 
-        fetchCryptocurrencyList();
+        fetchCryptocurrencyList().then(() => {
+            console.log(cryptocurrencyList);
+        });
     }, []);
 
     return (
-        <div className="cryptocurrency-list">
-            {!loading ? (
-                <div>
-                    {loaded && cryptocurrencyList.length > 0 ? (
-                        <div className="home-content">
-                            {cryptocurrencyList.map(([key, value], index) => (
-                                <CryptocurrencyCard key={index} name={key} value={JSON.stringify(value['a'][0])} />
-                            ))}
-                        </div>
-                    ) : (
-                        <p>No cryptocurrencies found.</p>
-                    )}
-                </div>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <div className="cryptocurrency-list">
+                {!loading ? (
+                    <div>
+                        {loaded && cryptocurrencyList.length > 0 ? (
+                            <div className="home-content">
+                                {cryptocurrencyList.filter(item =>
+                                    (
+                                        JSON.stringify(item[0]).toLowerCase().includes(searchTerm.toLowerCase())
+                                    )
+                                ).map(([key, value], index) => (
+                                    <CryptocurrencyCard key={index} name={key} value={JSON.stringify(value['a'][0])} />
+                                ))}
+                            </div>
+                        ) : (
+                            <p>No cryptocurrencies found.</p>
+                        )}
+                    </div>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
         </div>
     );
 };

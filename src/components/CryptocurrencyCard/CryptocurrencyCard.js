@@ -4,7 +4,6 @@ import './CryptocurrencyCard.css';
 const CryptocurrencyCard = ({ name, value, key }) => {
     const cardRef = useRef(null);
     useEffect(() => {
-        console.log(cardRef)
         cardRef.current.classList.add('visible');
     }, []);
     return (
