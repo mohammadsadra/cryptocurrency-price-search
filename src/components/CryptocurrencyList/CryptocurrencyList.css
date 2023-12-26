@@ -1,0 +1,13 @@
+.cryptocurrency-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+.home-content{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin: 20px;
+}
