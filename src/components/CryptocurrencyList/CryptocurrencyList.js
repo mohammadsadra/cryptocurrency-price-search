@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CryptocurrencyList.css';
 import CryptocurrencyCard from "../CryptocurrencyCard/CryptocurrencyCard";
 import SearchBar from "../SearchBar/SearchBar";
+import Loading from "../Loading/Loading";
 
 const CryptocurrencyList = () => {
     const [cryptocurrencyList, setCryptocurrencyList] = useState([]);
@@ -51,7 +52,7 @@ const CryptocurrencyList = () => {
                         )}
                     </div>
                 ) : (
-                    <p>Loading...</p>
+                    <Loading/>
                 )}
             </div>
         </div>
