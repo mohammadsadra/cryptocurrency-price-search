@@ -48,7 +48,7 @@ const CryptocurrencyList = () => {
                                 ))}
                             </div>
                         ) : (
-                            <p>No cryptocurrencies found.</p>
+                            <h1 style={{color:"white"}}>No cryptocurrencies found.</h1>
                         )}
                     </div>
                 ) : (
